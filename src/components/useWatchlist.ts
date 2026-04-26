@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createClient } from '@/lib/supabase'
 import { useAuth } from './AuthProvider'
 
@@ -7,7 +7,8 @@ export function useWatchlist() {
   const { user } = useAuth()
   const [watchlist, setWatchlist] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
-  const supabase = createClient()
+  // Stable supabase client
+  const supabase = useMemo(() => createClient(), [])
 
   const fetchWatchlist = useCallback(async () => {
     if (!user) return
@@ -16,7 +17,7 @@ export function useWatchlist() {
       .select('symbol')
       .eq('user_id', user.id)
     setWatchlist(data?.map(r => r.symbol) ?? [])
-  }, [user])
+  }, [user, supabase])
 
   useEffect(() => { fetchWatchlist() }, [fetchWatchlist])
 

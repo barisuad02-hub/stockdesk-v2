@@ -43,7 +43,8 @@ export default function Dashboard() {
   const [chartPeriod, setChartPeriod] = useState<30 | 60 | 90 | 180>(90)
   const [showFilters, setShowFilters] = useState(false)
 
-  const candleData = useMemo(() => generateCandleData(selectedStock.price, chartPeriod), [selectedStock.symbol, chartPeriod])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const candleData = useMemo(() => generateCandleData(selectedStock.price, chartPeriod), [selectedStock.symbol, selectedStock.price, chartPeriod])
 
   const sortedFiltered = useMemo(() => {
     let stocks = DSE_STOCKS
