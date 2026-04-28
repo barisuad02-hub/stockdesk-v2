@@ -3,7 +3,5 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install --legacy-peer-deps",
   "outputDirectory": ".next",
-  "engines": {
-    "node": "18.x"
-  }
+  "regions": ["sin1"]
 }
