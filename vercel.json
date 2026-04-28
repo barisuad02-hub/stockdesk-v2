@@ -1,7 +1,5 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm install --legacy-peer-deps && npm run build",
   "outputDirectory": ".next",
-  "regions": ["sin1"]
+  "installCommand": "echo 'install handled in build'"
 }
